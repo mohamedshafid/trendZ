@@ -1,6 +1,4 @@
 import { Navbar, SignIn, SignUp } from "./components";
-import Signin from "./components/SignIn";
-import Signup from "./components/SignUp";
 import { useAppContext } from "./contexts/AppContext";
 
 const App = () => {
