@@ -12,7 +12,7 @@ const SignInSchema = z.object({
 
 // 🧠 React Hook Form Setup
 const Signin = () => {
-  const { toggleFormType } = useAppContext();
+  const { toggleFormType, formRef } = useAppContext();
 
   const {
     register,
@@ -42,7 +42,7 @@ const Signin = () => {
         <form
           className="space-y-5"
           onSubmit={handleSubmit(onSubmit)}
-          noValidate
+          ref={formRef}
         >
           {/* Email Field */}
           <div>
@@ -107,18 +107,17 @@ const Signin = () => {
           >
             Sign In
           </button>
+          {/* Footer */}
+          <div className="text-sm text-gray-600 text-center">
+            Don't have an account?{" "}
+            <p
+              className="text-primary font-medium hover:underline cursor-pointer"
+              onClick={toggleFormType}
+            >
+              Sign up
+            </p>
+          </div>
         </form>
-
-        {/* Footer */}
-        <div className="mt-6 text-sm text-gray-600 text-center">
-          Don't have an account?{" "}
-          <p
-            className="text-primary font-medium hover:underline cursor-pointer"
-            onClick={toggleFormType}
-          >
-            Sign up
-          </p>
-        </div>
       </div>
     </div>
   );

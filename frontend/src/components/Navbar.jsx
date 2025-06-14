@@ -27,13 +27,11 @@ const Navbar = () => {
 
   return (
     <nav className="w-full flex justify-between items-center  px-4 sm:px-8 md:px-12 lg:px-16 xl:20 2xl:px-24 py-4 bg-white shadow-md backdrop-blur-3xl fixed top-0 left-0 z-49">
-      <div className="flex items-center gap-2 cursor-pointer">
-        <img src={logo} alt="logo" className="w-12 h-12 rounds" />
-        <p className="text-4xl font-bold text-primary">
-          trend
-          <span className="bg-primary text-white px-2 py-1 rounded-full rounds">
-            Z
-          </span>
+      <div className="cursor-pointer">
+        <p className="flex items-center text-4xl text-primary font-bold">
+          Tr
+            <img src={logo} alt="logo" className="w-12 h-12 rounds" />
+          dZ
         </p>
       </div>
       {/* Desktop Mode */}

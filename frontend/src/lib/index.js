@@ -1,3 +1,5 @@
+import { Shirt, Tag, ShirtIcon } from "lucide-react";
+
 const navLinks = [
   {
     name: "Home",
@@ -21,6 +23,6 @@ const navLinks = [
   },
 ];
 
-export {
-    navLinks
-}
+
+
+export { navLinks };

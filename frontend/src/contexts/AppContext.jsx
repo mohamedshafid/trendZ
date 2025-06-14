@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 
 const AppContext = createContext(null);
 
@@ -6,6 +6,7 @@ export const AppProvider = ({ children }) => {
   // You can add state and functions here that you want to share across your app
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [formType, setFormType] = useState("signup"); // "signup" or "signin"
+  const formRef=useRef(null);
 
   const toggleAuthModal = () => {
     setAuthModalOpen((prev) => !prev);
@@ -21,6 +22,7 @@ export const AppProvider = ({ children }) => {
     toggleAuthModal,
     formType,
     toggleFormType,
+    formRef,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
