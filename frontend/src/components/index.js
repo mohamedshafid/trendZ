@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import Categories from "./Categories";
 import Products from "./Products";
 import Spinner from "./Spinner";
+import RelatedProducts from "./RelatedProducts";
 
 export {
   Navbar,
@@ -20,4 +21,5 @@ export {
   Categories,
   Products,
   Spinner,
+  RelatedProducts
 };

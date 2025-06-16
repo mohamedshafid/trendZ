@@ -24,7 +24,7 @@ const NewsLettter = () => {
   };
 
   return (
-    <section className="mt-20px-6 md:px-16 py-16 bg-gradient-to-br from-[#f3f4f6] to-[#eaeefc]">
+    <section id="newsletter" className="mt-20px-6 md:px-16 py-16 bg-gradient-to-br from-[#f3f4f6] to-[#eaeefc]">
       <div className="max-w-3xl mx-auto text-center bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-3xl px-8 py-12">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
           Stay in the Loop!

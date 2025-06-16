@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // 🆕 React Router
 import ReactPaginate from "react-paginate";
 import { Tag, Star, MapPin, Percent } from "lucide-react";
 import Spinner from "./Spinner";
@@ -11,21 +12,27 @@ const Products = ({
   handlePageClick,
 }) => {
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // 🆕 For routing
 
+  // Simulate loading when selectedData changes
   useEffect(() => {
     setLoading(true);
-
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 500); // 500ms delay for UX (adjustable or tied to real loading)
-
+    }, 500); // Simulate delay
     return () => clearTimeout(timeout);
   }, [selectedData]);
 
+  // Handle product click to navigate to detail page
+  const handleProductClick = (id) => {
+    navigate(`/product/${id}`);
+  };
+
+  // Show spinner while loading
   if (loading) return <Spinner />;
 
   return (
-    <div className="transition-all duration-500">
+    <section id="products" className="transition-all duration-500">
       <h3 className="text-3xl font-bold mb-3 text-center text-gray-800">
         {selectedData.title}
       </h3>
@@ -37,6 +44,7 @@ const Products = ({
         {currentProducts.map((product) => (
           <div
             key={product.id}
+            onClick={() => handleProductClick(product.id)}
             className="bg-white/30 backdrop-blur-md rounded-xl shadow-xl border border-white/40 transition duration-300 hover:shadow-primary/40 hover:scale-[1.03] cursor-pointer"
           >
             <div className="relative w-full h-52 overflow-hidden">
@@ -99,7 +107,7 @@ const Products = ({
           breakLinkClassName="page-link"
         />
       </div>
-    </div>
+    </section>
   );
 };
 

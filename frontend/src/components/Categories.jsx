@@ -31,7 +31,7 @@ const Categories = () => {
   };
 
   return (
-    <section className="px-6 md:px-16 py-16 mt-20 bg-[#f9f9f9] min-h-screen transition-colors duration-500">
+    <section id="category" className="px-6 md:px-16 py-16 mt-20 bg-[#f9f9f9] min-h-screen transition-colors duration-500">
       {/* Title */}
       <h2 className="text-4xl md:text-5xl font-light text-center text-gray-800 mb-14 transition-all">
         Shop by{" "}
@@ -41,7 +41,7 @@ const Categories = () => {
       </h2>
 
       {/* Category Selector */}
-      <div className="bg-primary/10 p-8 rounded-xl shadow-inner mb-20 transition-all">
+      <div className="bg-primary/5 p-8 rounded-2xl shadow-inner mb-20 transition-all">
         <div className="flex flex-wrap justify-center gap-6">
           {categories.map((cat, index) => {
             const isSelected = categoryMap[cat.name] === selectedCategory;

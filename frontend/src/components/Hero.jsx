@@ -3,7 +3,7 @@ import { User, UserRound, Baby, ShoppingBag } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative h-[600px] w-full mt-20 bg-hero bg-cover bg-center rounded-[2rem] overflow-hidden flex items-center justify-start px-6 md:px-20 backdrop-blur-md bg-white/5 border border-white/10 shadow-2xl">
+    <section id="home" className="relative h-[600px] w-full mt-20 bg-hero bg-cover bg-center rounded-[2rem] overflow-hidden flex items-center justify-start px-6 md:px-20 backdrop-blur-md bg-white/5 border border-white/10 shadow-2xl">
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-[#060d26]/80 to-black/90 z-0" />
 

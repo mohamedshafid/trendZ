@@ -107,8 +107,6 @@ export const navLinks = [
   },
 ];
 
-
-
 // Category images
 export const categories = [
   { name: "Men's Wear", image: menswear },

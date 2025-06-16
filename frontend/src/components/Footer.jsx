@@ -3,7 +3,7 @@ import logo from "/icon.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-white/70 backdrop-blur-md border-t border-gray-300 shadow-2xl text-gray-800 mt-20 px-6 md:px-16 py-12 font-sans rounded-t-2xl">
+    <footer id="contacts" className="bg-white/70 backdrop-blur-md border-t border-gray-300 shadow-2xl text-gray-800 mt-20 px-6 md:px-16 py-12 font-sans rounded-t-2xl">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         {/* Column 1 */}
         <div>

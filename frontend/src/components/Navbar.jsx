@@ -5,8 +5,11 @@ import { BadgePlus, Hamburger, HeartPlus, PackageSearch } from "lucide-react";
 import { navLinks } from "../lib";
 import logo from "/icon.png";
 import { useAppContext } from "../contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  // Navigation hook to programmatically navigate.
+  const navigate = useNavigate();
   // context.
   const { toggleAuthModal } = useAppContext();
 
@@ -27,7 +30,7 @@ const Navbar = () => {
 
   return (
     <nav className="w-full flex justify-between items-center  px-4 sm:px-8 md:px-12 lg:px-16 xl:20 2xl:px-24 py-4 bg-white shadow-md backdrop-blur-3xl fixed top-0 left-0 z-49">
-      <div className="cursor-pointer">
+      <div className="cursor-pointer" onClick={() => navigate("/")}>
         <p className="flex items-center text-4xl text-primary font-bold">
           Tr
             <img src={logo} alt="logo" className="w-12 h-12 rounds" />

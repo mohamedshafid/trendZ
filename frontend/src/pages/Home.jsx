@@ -1,7 +1,12 @@
-const Home = () => {
-  return (
-    <div>Home</div>
-  )
-}
+import { Categories, Hero, NewsLettter, Popular, Products } from "../components";
 
-export default Home
+const Home = () => (
+  <>
+    <Hero />
+    <Popular />
+    <Categories />
+    <NewsLettter />
+  </>
+);
+
+export default Home;
