@@ -9,9 +9,9 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 max-w-2xl text-white space-y-6 text-center mx-auto flex flex-col items-center justify-center h-full">
-        <h1 className="leading-tight tracking-tight text-4xl md:text-6xl font-light">
+        <h1 className="text-4xl md:text-6xl font-bold">
           <span >Redefine </span>
-          <span className="font-medium text-white italic ">
+          <span className="font-medium text-white tracking-tight">
              Your <span className="text-white-500">Style</span>
           </span>
           <span className="block text-white-500 text-5xl md:text-6xl font-extrabold">

@@ -1,6 +1,90 @@
 import { Shirt, Tag, ShirtIcon } from "lucide-react";
+import {
+  ethnic,
+  footwear,
+  jeans,
+  kids,
+  menswear,
+  westernwear,
+  winterwear,
+  tshirts,
+  // Ethnic Wear
+  e1,
+  e2,
+  e3,
+  e4,
+  e5,
+  e6,
+  e7,
+  e8,
+  e9,
+  // Footwear
+  f1,
+  f2,
+  f3,
+  f4,
+  f5,
+  f6,
+  f7,
+  f8,
+  f9,
+  // Jeans
+  j1,
+  j2,
+  j3,
+  j4,
+  j5,
+  j6,
+  // Kids
+  k1,
+  k2,
+  k3,
+  k4,
+  k5,
+  k6,
+  // Menswear
+  m1,
+  m2,
+  m3,
+  m4,
+  m5,
+  m6,
+  m7,
+  m8,
+  m9,
+  m10,
+  m11,
+  m12,
+  // T-shirts
+  t1,
+  t2,
+  t3,
+  t4,
+  t5,
+  t6,
+  t7,
+  t8,
+  t9,
+  t10,
+  // Western Wear
+  w1,
+  w2,
+  w3,
+  w4,
+  w5,
+  w6,
+  // Winter Wear
+  wi1,
+  wi2,
+  wi3,
+  wi4,
+  wi5,
+  wi6,
+  wi7,
+  wi8,
+} from "../assets";
 
-const navLinks = [
+export const navLinks = [
   {
     name: "Home",
     href: "#home",
@@ -23,6 +107,152 @@ const navLinks = [
   },
 ];
 
+// Category images
+export const categories = [
+  { name: "Men's Wear", image: menswear },
+  { name: "Western Wear", image: westernwear },
+  { name: "Kids", image: kids },
+  { name: "Footwear", image: footwear },
+  { name: "Winter", image: winterwear },
+  { name: "T-Shirts", image: tshirts },
+  { name: "Ethnic", image: ethnic },
+  { name: "Jeans", image: jeans },
+];
 
+// Category mappings
+export const categoryMap = {
+  "Men's Wear": "mens_wear",
+  "Western Wear": "western_wear",
+  Kids: "kids",
+  Footwear: "footwear",
+  Winter: "winter_wear",
+  "T-Shirts": "tshirts",
+  Ethnic: "ethnic_wear",
+  Jeans: "jeans",
+};
 
-export { navLinks };
+// // Product categories with images and details
+export const productCategories = [
+  {
+    key: "ethnic_wear",
+    title: "Ethnic Wear Collection",
+    description: "Traditional elegance for festive and cultural moments.",
+    products: [e1, e2, e3, e4, e5, e6, e7, e8, e9].map((img, i) => ({
+      id: `e${i + 1}`,
+      image: img,
+      name: `E Image ${i + 1}`,
+      price: 999 + i * 100,
+      rating: 4 + (i % 5) * 0.1,
+      reviews: 30 + i * 10,
+      offer: `${10 + (i % 4) * 5}% OFF`,
+      place: "India",
+    })),
+  },
+  {
+    key: "footwear",
+    title: "Footwear Collection",
+    description: "Step up your fashion game with our latest footwear designs.",
+    products: [f1, f2, f3, f4, f5, f6, f7, f8, f9].map((img, i) => ({
+      id: `f${i + 1}`,
+      image: img,
+      name: `F Image ${i + 1}`,
+      price: 1099 + i * 100,
+      rating: 4.1 + (i % 4) * 0.1,
+      reviews: 40 + i * 12,
+      offer: `${15 + (i % 3) * 5}% OFF`,
+      place: "India",
+    })),
+  },
+  {
+    key: "jeans",
+    title: "Jeans Collection",
+    description: "Durable, stylish, and comfortable jeans for everyday wear.",
+    products: [j1, j2, j3, j4, j5, j6].map((img, i) => ({
+      id: `j${i + 1}`,
+      image: img,
+      name: `J Image ${i + 1}`,
+      price: 1199 + i * 120,
+      rating: 4.2 + (i % 3) * 0.1,
+      reviews: 20 + i * 15,
+      offer: `${20 + (i % 2) * 5}% OFF`,
+      place: "India",
+    })),
+  },
+  {
+    key: "kids",
+    title: "Kids Collection",
+    description: "Cute and comfortable styles for the little ones.",
+    products: [k1, k2, k3, k4, k5, k6].map((img, i) => ({
+      id: `k${i + 1}`,
+      image: img,
+      name: `K Image ${i + 1}`,
+      price: 799 + i * 80,
+      rating: 4.3 + (i % 4) * 0.1,
+      reviews: 25 + i * 8,
+      offer: `${10 + (i % 4) * 5}% OFF`,
+      place: "India",
+    })),
+  },
+  {
+    key: "mens_wear",
+    title: "Menswear Collection",
+    description: "Sharp and stylish outfits for the modern man.",
+    products: [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12].map(
+      (img, i) => ({
+        id: `m${i + 1}`,
+        image: img,
+        name: `M Image ${i + 1}`,
+        price: 1299 + i * 110,
+        rating: 4.0 + (i % 5) * 0.1,
+        reviews: 60 + i * 9,
+        offer: `${10 + (i % 5) * 5}% OFF`,
+        place: "India",
+      })
+    ),
+  },
+  {
+    key: "tshirts",
+    title: "T-Shirts Collection",
+    description: "Comfy, casual, and cool t-shirts for all occasions.",
+    products: [t1, t2, t3, t4, t5, t6, t7, t8, t9, t10].map((img, i) => ({
+      id: `t${i + 1}`,
+      image: img,
+      name: `T Image ${i + 1}`,
+      price: 599 + i * 90,
+      rating: 4.2 + (i % 3) * 0.1,
+      reviews: 38 + i * 11,
+      offer: `${10 + (i % 4) * 5}% OFF`,
+      place: "India",
+    })),
+  },
+  {
+    key: "western_wear",
+    title: "Western Wear Collection",
+    description: "Chic and contemporary outfits for a modern vibe.",
+    products: [w1, w2, w3, w4, w5, w6].map((img, i) => ({
+      id: `w${i + 1}`,
+      image: img,
+      name: `W Image ${i + 1}`,
+      price: 1399 + i * 95,
+      rating: 4.1 + (i % 4) * 0.1,
+      reviews: 42 + i * 13,
+      offer: `${15 + (i % 3) * 5}% OFF`,
+      place: "India",
+    })),
+  },
+  {
+    key: "winter_wear",
+    title: "Winter Wear Collection",
+    description: "Stay warm and stylish through the cold season.",
+    products: [wi1, wi2, wi3, wi4, wi5, wi6, wi7, wi8].map((img, i) => ({
+      id: `wi${i + 1}`,
+      image: img,
+      name: `WI Image ${i + 1}`,
+      price: 1499 + i * 100,
+      rating: 4.4 + (i % 3) * 0.1,
+      reviews: 55 + i * 10,
+      offer: `${20 + (i % 4) * 5}% OFF`,
+      place: "India",
+    })),
+  },
+];
