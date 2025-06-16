@@ -1,4 +1,4 @@
-import { Shirt, Tag, ShirtIcon } from "lucide-react";
+import { Shirt } from "lucide-react";
 import {
   ethnic,
   footwear,
@@ -106,6 +106,8 @@ export const navLinks = [
     href: "#contacts",
   },
 ];
+
+
 
 // Category images
 export const categories = [

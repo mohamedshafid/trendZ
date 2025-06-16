@@ -8,7 +8,7 @@ const popularItems = [
     category: "Men",
     description:
       "Step into style with our top-tier men's wear. Designed for comfort, confidence, and a perfect fit every time.",
-    icon: <Shirt className="text-primary w-5 h-5" />,
+    icon: <Shirt className="text-primary w-5 h-5" />, // ✅ JSX component — no quotes
   },
   {
     image: p2,

@@ -1,0 +1,36 @@
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .page-button {
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #060d26;
+    background-color: #ffffff;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .page-button:hover {
+    background-color: #1a1f3d;
+    color:white;
+  }
+  
+  .active {
+    background-color: #060d26;
+    color: #ffffff;
+    font-weight: bold;
+    border: 2px solid #060d26;
+  }
+  
+  .disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
