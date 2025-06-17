@@ -8,8 +8,10 @@ import Cart from "./pages/Cart";
 import Favorites from "./pages/Favorites";
 import ProductDetail from "./pages/ProductDetail";
 import { useEffect } from "react";
+import { useAuthStatus } from "./hooks/useAuthStatus";
 
 const App = () => {
+  useAuthStatus(); // Check authentication status on app load
   const {
     authModalOpen,
     formType,
@@ -17,9 +19,11 @@ const App = () => {
     formRef,
     cartItems,
     favoriteItems,
+    user,
   } = useAppContext();
   console.log("Cart Items:", cartItems);
   console.log("Favorite Items:", favoriteItems);
+  console.log("User:", user);
 
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to top on component mount

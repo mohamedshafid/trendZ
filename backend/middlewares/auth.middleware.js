@@ -2,8 +2,10 @@ import jwt from "jsonwebtoken";
 import { User } from "../models/user.model.js";
 
 export const protect = async (req, res, next) => {
+  console.log("Auth Middleware Triggered");
   try {
-    const token = req.cookies.token;
+    const token = req.cookies?.token;
+    console.log("Token from cookies:", token);
 
     if (!token) {
       return res.status(401).json({

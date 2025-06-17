@@ -7,6 +7,7 @@ export const AppProvider = ({ children }) => {
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [formType, setFormType] = useState("signup"); // "signup" or "signin"
   const [cartItems, setCartItems] = useState([]); // Example state for cart items
+  const [user, setUser] = useState(null); // Example state for user information
   const [favoriteItems, setFavoriteItems] = useState([]);
 
   
@@ -88,6 +89,8 @@ export const AppProvider = ({ children }) => {
     removeFromFavorites,
     isInFavorites,
     toggleFavoriteItem,
+    user,
+    setUser, 
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

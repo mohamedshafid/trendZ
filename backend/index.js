@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/db.config.js";
 import { userRouter } from "./routes/user.route.js";
 import { cartRouter } from "./routes/cart.route.js";
+import cookieParser from "cookie-parser";
 
 // loading environment variables from .env file.
 dotenv.config();
@@ -29,6 +30,7 @@ app.use(
 // inbuild middleware.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use("/api/v1/auth", userRouter);
 app.use("/api/v1/cart", cartRouter);
 

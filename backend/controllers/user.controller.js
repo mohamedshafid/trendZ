@@ -146,10 +146,10 @@ export const signOut = (req, res) => {
   }
 };
 
-// GET USER CONTROLLER
-export const getUserProfile = (req, res) => {
+// GET CURRENT USER
+export const getCurrentUser = (req, res) => {
   try {
-    const user = req.user; // User is attached to req by the protect middleware
+    const user = req.user;
     return res.status(200).json({
       success: true,
       user: {
@@ -159,7 +159,7 @@ export const getUserProfile = (req, res) => {
       },
     });
   } catch (error) {
-    console.error("GetUserProfile Error:", error);
+    console.error("GetCurrentUser Error:", error);
     return res.status(500).json({
       success: false,
       message: "Internal server error",

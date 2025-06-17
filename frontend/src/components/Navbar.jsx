@@ -11,7 +11,7 @@ const Navbar = () => {
   // Navigation hook to programmatically navigate.
   const navigate = useNavigate();
   // context.
-  const { toggleAuthModal } = useAppContext();
+  const { toggleAuthModal, user } = useAppContext();
 
   // Active Links.
   const [activeLink, setActiveLink] = useState("Home");
@@ -97,14 +97,22 @@ const Navbar = () => {
           className="cursor-pointer max-md:hidden rounds"
           onClick={() => navigate("/cart")}
         />
-        <button
-          className="px-4 py-2 bg-primary text-white rounded-2xl max-md:hidden flex items-center gap-2 hover:bg-primary/90 transition-colors duration-300"
-          onClick={toggleAuthModal}
-        >
-          <span>
-            <BadgePlus />
-          </span>
-        </button>
+        {user ? (
+          <div className="flex items-center gap-2 ">
+            <div className="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center font-semibold text-sm shadow-md cursor-pointer">
+              {user.name[0].toUpperCase()}
+            </div>
+          </div>
+        ) : (
+          <button
+            className="px-4 py-2 bg-primary text-white rounded-2xl max-md:hidden flex items-center gap-2 hover:bg-primary/90 transition-colors duration-300"
+            onClick={toggleAuthModal}
+          >
+            <span>
+              <BadgePlus />
+            </span>
+          </button>
+        )}
         <span className="cursor-pointer max-md:block hidden bg-white rounds">
           <Hamburger size={30} onClick={() => toggleMenu()} />
         </span>

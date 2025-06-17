@@ -3,6 +3,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Notebook, User, Mail, Lock } from "lucide-react";
 import { useAppContext } from "../contexts/AppContext";
+import { useSignUp } from "../hooks/useAuth";;
+import toast from "react-hot-toast"; // Optional toast support
 
 // 🔐 Zod Validation Schema
 const SignUpSchema = z.object({
@@ -11,9 +13,8 @@ const SignUpSchema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
-// 🧠 React Hook Form Setup
 const Signup = () => {
-  const { toggleFormType, formRef } = useAppContext();
+  const { toggleFormType, formRef ,setUser} = useAppContext();
 
   const {
     register,
@@ -24,9 +25,20 @@ const Signup = () => {
     resolver: zodResolver(SignUpSchema),
   });
 
+  // 🔗 React Query Mutation
+  const { mutate: signUp, isPending, error } = useSignUp();
+
   const onSubmit = (data) => {
-    console.log("Form submitted:", data);
-    reset();
+    signUp(data, {
+      onSuccess: (userData) => {
+        toast.success("Account created successfully!");
+        reset();
+        toggleFormType(); 
+      },
+      onError: (err) => {
+        toast.error(err.response?.data?.message || "Signup failed");
+      },
+    });
   };
 
   return (
@@ -132,10 +144,12 @@ const Signup = () => {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full bg-primary text-white py-3 rounded-xl font-semibold tracking-wide hover:bg-primary/90"
+            className="w-full bg-primary text-white py-3 rounded-xl font-semibold tracking-wide hover:bg-primary/90 disabled:opacity-60 transition"
+            disabled={isPending}
           >
-            Join the Trend
+            {isPending ? "Creating..." : "Join the Trend"}
           </button>
+
           {/* Footer */}
           <div className="text-sm text-gray-600 text-center">
             Already have an account?{" "}
@@ -146,6 +160,13 @@ const Signup = () => {
               Log in
             </p>
           </div>
+
+          {/* Error Feedback */}
+          {error && (
+            <p className="text-sm text-red-500 text-center mt-2">
+              {error.response?.data?.message || "Something went wrong"}
+            </p>
+          )}
         </form>
       </div>
     </div>
