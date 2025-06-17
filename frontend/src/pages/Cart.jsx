@@ -1,13 +1,36 @@
 import React from "react";
 import { useAppContext } from "../contexts/AppContext";
+import { useRemoveFromCart } from "../hooks/useCart";
 import { Trash2 } from "lucide-react";
+import toast from "react-hot-toast";
+import { productCategories } from "../lib";
+
+// 🔍 Helper to get full product details from productId
+const getProductDetailsById = (id) => {
+  for (const category of productCategories) {
+    const product = category.products.find((p) => p.id === id);
+    if (product) return product;
+  }
+  return null;
+};
 
 const Cart = () => {
-  const { cartItems,toggleCartItem} = useAppContext();
+  const { cartItems } = useAppContext();
+  const removeMutation = useRemoveFromCart();
+
+  // Filter valid cart items with product details
+  const enrichedItems = cartItems
+    .map((cartItem) => {
+      const product = getProductDetailsById(cartItem.productId);
+      return product
+        ? { ...product, ...cartItem } // Merge product and cart info
+        : null;
+    })
+    .filter(Boolean); // Remove nulls (missing products)
 
   const getQty = (item) => item.quantity || 1;
 
-  const itemTotal = cartItems.reduce(
+  const itemTotal = enrichedItems.reduce(
     (acc, item) => acc + item.price * getQty(item),
     0
   );
@@ -15,18 +38,23 @@ const Cart = () => {
   const tax = itemTotal * 0.12;
   const grandTotal = itemTotal + deliveryCost + tax;
 
+  const handleRemove = (productId) => {
+    removeMutation.mutate(productId, {
+      onSuccess: () => toast.success("Item removed from cart"),
+      onError: () => toast.error("Failed to remove item"),
+    });
+  };
+
   return (
     <div className="min-h-screen p-6 relative">
       <h1 className="text-4xl font-bold text-center text-primary mb-10">
         🛒 Your Cart
       </h1>
 
-      {cartItems.length === 0 ? (
+      {enrichedItems.length === 0 ? (
         <div className="text-center mt-20">
           <Trash2 className="mx-auto w-16 h-16 text-primary animate-bounce mb-4" />
-          <p className="text-lg text-gray-600 ">
-            Your cart is empty.
-          </p>
+          <p className="text-lg text-gray-600">Your cart is empty.</p>
         </div>
       ) : (
         <>
@@ -43,9 +71,9 @@ const Cart = () => {
                 </tr>
               </thead>
               <tbody>
-                {cartItems.map((item) => (
+                {enrichedItems.map((item) => (
                   <tr
-                    key={item.id}
+                    key={`${item.productId}-${item.size}`}
                     className="transition duration-300 hover:bg-white/10 border-t border-white/10"
                   >
                     <td className="px-6 py-4">
@@ -55,7 +83,12 @@ const Cart = () => {
                         className="w-16 h-16 object-cover rounded-lg"
                       />
                     </td>
-                    <td className="px-6 py-4 font-semibold text-primary">{item.name}</td>
+                    <td className="px-6 py-4 font-semibold text-primary">
+                      {item.name}
+                      <div className="text-xs text-gray-400">
+                        Size: {item.size}
+                      </div>
+                    </td>
                     <td className="px-6 py-4 text-primary">₹{item.price}</td>
                     <td className="px-6 py-4 text-primary">{getQty(item)}</td>
                     <td className="px-6 py-4 text-primary font-semibold">
@@ -63,7 +96,7 @@ const Cart = () => {
                     </td>
                     <td className="px-6 py-4">
                       <button
-                        onClick={() => toggleCartItem(item)}
+                        onClick={() => handleRemove(item.productId)}
                         className="p-2 bg-red-500/80 hover:bg-red-600 text-white rounded-full transition"
                         aria-label="Remove item"
                       >

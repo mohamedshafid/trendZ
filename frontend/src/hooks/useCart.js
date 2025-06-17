@@ -2,8 +2,12 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import * as cartApi from "../api/cartApi";
 
-export const useCart = () => {
-  return useQuery(["cart"], cartApi.fetchCart);
+export const useCart = (options = {}) => {
+  return useQuery({
+    queryKey: ["cart"],
+    queryFn: cartApi.getCart,
+    ...options,
+  });
 };
 
 export const useAddToCart = () => {

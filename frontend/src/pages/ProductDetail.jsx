@@ -14,10 +14,11 @@ import { productCategories } from "../lib";
 import { RelatedProducts } from "../components";
 import { useAppContext } from "../contexts/AppContext";
 import toast from "react-hot-toast";
+import { useAddToCart, useRemoveFromCart } from "../hooks/useCart";
 
 const ProductDetail = () => {
   useEffect(() => {
-    window.scrollTo(0, 0); 
+    window.scrollTo(0, 0);
     document.title = `Product ${productId}  | TrendZ`;
   }, []);
 
@@ -27,20 +28,28 @@ const ProductDetail = () => {
   const [selectedSize, setSelectedSize] = useState("M");
   const [related, setRelated] = useState([]);
 
-  const { isInCart, toggleCartItem, isInFavorites, toggleFavoriteItem } =
-    useAppContext();
+  const { isInCart, isInFavorites, toggleFavoriteItem } = useAppContext();
+  const { mutate: addToCart } = useAddToCart();
+  const { mutate: removeFromCart } = useRemoveFromCart();
 
-  const inCart = isInCart(productId);
   const inFavorites = isInFavorites(productId);
 
+  const inCart = isInCart(productId);
+
   const handleCartToggle = () => {
-    toggleCartItem({
-      ...product,
+    const cartItem = {
+      productId: productId,
       quantity,
       size: selectedSize,
-    });
+    };
 
-    toast.success(inCart ? "Removed from cart" : "Added to cart");
+    if (inCart) {
+      removeFromCart(product._id);
+      toast.success("Removed from cart");
+    } else {
+      addToCart(cartItem);
+      toast.success("Added to cart");
+    }
   };
 
   const handleFavoriteToggle = () => {

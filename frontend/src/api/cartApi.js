@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "/api/v1/cart";
+const BASE_URL = "http://localhost:3000/api/v1/cart";
 
 export const getCart = async () => {
   const res = await axios.get(BASE_URL, { withCredentials: true });

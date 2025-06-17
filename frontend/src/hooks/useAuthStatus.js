@@ -4,7 +4,6 @@ import axios from "axios";
 import { useAppContext } from "../contexts/AppContext";
 
 export const useAuthStatus = () => {
-  console.log("useAuthStatus hook initialized");
   const { setUser } = useAppContext();
 
   useEffect(() => {
@@ -21,7 +20,7 @@ export const useAuthStatus = () => {
 
     checkAuth();
 
-    const interval = setInterval(checkAuth, 5 * 60 * 1000);
+    const interval = setInterval(checkAuth, 60000); // Check every 60 seconds
     return () => clearInterval(interval);
   }, []);
 };

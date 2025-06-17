@@ -7,27 +7,38 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Favorites from "./pages/Favorites";
 import ProductDetail from "./pages/ProductDetail";
+
 import { useEffect } from "react";
 import { useAuthStatus } from "./hooks/useAuthStatus";
+import { useCart } from "./hooks/useCart"; // 🆕 import useCart
 
 const App = () => {
-  useAuthStatus(); // Check authentication status on app load
+  useAuthStatus(); // ✅ Load user on app start
   const {
     authModalOpen,
     formType,
     toggleAuthModal,
     formRef,
     cartItems,
-    favoriteItems,
     user,
+    setCartItems, // 🆕 used to update cart globally
   } = useAppContext();
-  console.log("Cart Items:", cartItems);
-  console.log("Favorite Items:", favoriteItems);
-  console.log("User:", user);
+
+  // 🆕 Fetch cart only when user is available
+  const { data: cartData, isSuccess } = useCart({
+    enabled: !!user,
+  });
+
+  // 🆕 Update cart in global context when data is fetched
+  useEffect(() => {
+    if (isSuccess && cartData) {
+      setCartItems(cartData.items); // ✅ set cart items globally
+    }
+  }, [isSuccess, cartData, setCartItems]);
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Scroll to top on component mount
-    document.title = "TrendZ - Your Fashion Destination"; // Set page title
+    window.scrollTo(0, 0);
+    document.title = "TrendZ - Your Fashion Destination";
 
     function handleClickOutside(event) {
       if (formRef.current && !formRef.current.contains(event.target)) {
@@ -41,6 +52,8 @@ const App = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [authModalOpen, toggleAuthModal]);
+
+  console.log("Cart Items:", cartItems); // 🆕 Debugging cart items
 
   return (
     <>
