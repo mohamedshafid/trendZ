@@ -16,10 +16,11 @@ export const addToCart = async ({ productId, quantity, size }) => {
   return res.data.cart;
 };
 
-export const removeFromCart = async ({ productId, size }) => {
-  const res = await axios.delete(`${BASE_URL}/removeFromCart`, {
-    data: { productId, size },
+export const removeFromCart = async ({ productId }) => {
+  console.log("removeFromCart called with productId:", productId);
+  const res = await axios.delete(`${BASE_URL}/remove?productId=${productId}`, {
     withCredentials: true,
   });
+  console.log("removeFromCart response:", res.data);
   return res.data.cart;
 };

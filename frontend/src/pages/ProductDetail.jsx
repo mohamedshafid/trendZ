@@ -28,7 +28,13 @@ const ProductDetail = () => {
   const [selectedSize, setSelectedSize] = useState("M");
   const [related, setRelated] = useState([]);
 
-  const { isInCart, isInFavorites, toggleFavoriteItem } = useAppContext();
+  const {
+    isInCart,
+    isInFavorites,
+    toggleFavoriteItem,
+    setCartItems,
+    cartItems,
+  } = useAppContext();
   const { mutate: addToCart } = useAddToCart();
   const { mutate: removeFromCart } = useRemoveFromCart();
 
@@ -44,7 +50,7 @@ const ProductDetail = () => {
     };
 
     if (inCart) {
-      removeFromCart(product._id);
+      removeFromCart({ productId });
       toast.success("Removed from cart");
     } else {
       addToCart(cartItem);

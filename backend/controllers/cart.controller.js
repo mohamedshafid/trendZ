@@ -59,18 +59,29 @@ export const getCart = async (req, res) => {
 // Remove item from cart
 export const removeFromCart = async (req, res) => {
   const userId = req.user.id;
-  const { productId, size } = req.body;
+  const { productId } = req.query;
+
   try {
     const cart = await Cart.findOne({ userId });
+
     if (!cart) {
       return res
         .status(404)
         .json({ success: false, message: "No Items Found" });
     }
 
+    const originalLength = cart.items.length;
+
+    // Convert both sides to string to match ObjectIds
     cart.items = cart.items.filter(
-      (item) => !(item.productId === productId && item.size === size)
+      (item) => item.productId.toString() !== productId.toString()
     );
+
+    if (cart.items.length === originalLength) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Item not found in cart" });
+    }
 
     await cart.save();
     res.status(200).json({ success: true, message: "Item removed", cart });

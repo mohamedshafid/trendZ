@@ -13,6 +13,6 @@ cartRouter.get("/", protect, getCart);
 
 cartRouter.post("/add", protect, addToCart);
 
-cartRouter.delete("/remove/:productId", protect, removeFromCart);
+cartRouter.delete("/remove", protect, removeFromCart);
 
 export { cartRouter };

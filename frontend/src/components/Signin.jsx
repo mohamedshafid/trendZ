@@ -29,6 +29,7 @@ const Signin = () => {
   const onSubmit = (data) => {
     signIn(data, {
       onSuccess: (userData) => {
+        setUser(userData);
         toast.success("Welcome back!");
         reset();
         toggleAuthModal(false);

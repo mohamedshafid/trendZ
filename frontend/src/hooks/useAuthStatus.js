@@ -17,10 +17,6 @@ export const useAuthStatus = () => {
         setUser(null);
       }
     };
-
     checkAuth();
-
-    const interval = setInterval(checkAuth, 60000); // Check every 60 seconds
-    return () => clearInterval(interval);
   }, []);
 };

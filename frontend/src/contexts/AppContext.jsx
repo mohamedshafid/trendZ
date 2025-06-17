@@ -13,7 +13,6 @@ export const AppProvider = ({ children }) => {
   const isInCart = (productId) => {
     return cartItems.some((item) => item.productId === productId);
   };
-  
 
   // 🛒 Favorites Functions
   const addToFavorites = (product) => {
@@ -37,17 +36,9 @@ export const AppProvider = ({ children }) => {
       : addToFavorites(product);
   };
 
-  // 🧠 Modal and Form UI
   const toggleAuthModal = () => setAuthModalOpen((prev) => !prev);
   const toggleFormType = () =>
     setFormType((prev) => (prev === "signup" ? "signin" : "signup"));
-
-  // 🔄 Reset on logout
-  const logoutCleanup = () => {
-    setUser(null);
-    setCartItems([]);
-    setFavoriteItems([]);
-  };
 
   return (
     <AppContext.Provider
@@ -67,7 +58,6 @@ export const AppProvider = ({ children }) => {
         toggleFavoriteItem,
         user,
         setUser,
-        logoutCleanup,
       }}
     >
       {children}

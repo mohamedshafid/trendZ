@@ -17,7 +17,7 @@ import { useSignOut } from "../hooks/useAuth";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { toggleAuthModal, user } = useAppContext();
+  const { toggleAuthModal, user, setUser, setCartItems } = useAppContext();
 
   const [activeLink, setActiveLink] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -127,6 +127,8 @@ const Navbar = () => {
                   onClick={() => {
                     signOut(undefined, {
                       onSuccess: () => {
+                        setUser(null);
+                        setCartItems([]);
                         toast.success("Signed out successfully!");
                         navigate("/");
                       },

@@ -39,7 +39,7 @@ const Cart = () => {
   const grandTotal = itemTotal + deliveryCost + tax;
 
   const handleRemove = (productId) => {
-    removeMutation.mutate(productId, {
+    removeMutation.mutate({productId}, {
       onSuccess: () => toast.success("Item removed from cart"),
       onError: () => toast.error("Failed to remove item"),
     });

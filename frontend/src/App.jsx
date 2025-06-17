@@ -13,20 +13,22 @@ import { useAuthStatus } from "./hooks/useAuthStatus";
 import { useCart } from "./hooks/useCart"; // 🆕 import useCart
 
 const App = () => {
-  useAuthStatus(); // ✅ Load user on app start
+  useAuthStatus(); 
   const {
     authModalOpen,
     formType,
     toggleAuthModal,
     formRef,
-    cartItems,
     user,
     setCartItems, 
+    cartItems
   } = useAppContext();
 
   const { data: cartData, isSuccess } = useCart({
     enabled: !!user,
   });
+
+  console.log("Cart Data:", cartItems);
 
 
   useEffect(() => {
@@ -34,6 +36,8 @@ const App = () => {
       setCartItems(cartData.items); 
     }
   }, [isSuccess, cartData, setCartItems]);
+
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
