@@ -21,18 +21,17 @@ const App = () => {
     formRef,
     cartItems,
     user,
-    setCartItems, // 🆕 used to update cart globally
+    setCartItems, 
   } = useAppContext();
 
-  // 🆕 Fetch cart only when user is available
   const { data: cartData, isSuccess } = useCart({
     enabled: !!user,
   });
 
-  // 🆕 Update cart in global context when data is fetched
+
   useEffect(() => {
     if (isSuccess && cartData) {
-      setCartItems(cartData.items); // ✅ set cart items globally
+      setCartItems(cartData.items); 
     }
   }, [isSuccess, cartData, setCartItems]);
 
@@ -53,7 +52,6 @@ const App = () => {
     };
   }, [authModalOpen, toggleAuthModal]);
 
-  console.log("Cart Items:", cartItems); // 🆕 Debugging cart items
 
   return (
     <>
