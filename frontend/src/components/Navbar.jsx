@@ -33,7 +33,7 @@ const Navbar = () => {
       <div className="cursor-pointer" onClick={() => navigate("/")}>
         <p className="flex items-center text-4xl text-primary font-bold">
           Tr
-            <img src={logo} alt="logo" className="w-12 h-12 rounds" />
+          <img src={logo} alt="logo" className="w-12 h-12 rounds" />
           dZ
         </p>
       </div>
@@ -87,10 +87,15 @@ const Navbar = () => {
       </ul>
 
       <div className="flex items-center gap-3">
-        <HeartPlus size={30} className="cursor-pointer max-md:hidden rounds" />
+        <HeartPlus
+          size={30}
+          className="cursor-pointer max-md:hidden rounds"
+          onClick={() => navigate("/favorites")}
+        />
         <PackageSearch
           size={30}
           className="cursor-pointer max-md:hidden rounds"
+          onClick={() => navigate("/cart")}
         />
         <button
           className="px-4 py-2 bg-primary text-white rounded-2xl max-md:hidden flex items-center gap-2 hover:bg-primary/90 transition-colors duration-300"

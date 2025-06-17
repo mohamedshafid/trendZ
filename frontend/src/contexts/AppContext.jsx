@@ -7,10 +7,9 @@ export const AppProvider = ({ children }) => {
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [formType, setFormType] = useState("signup"); // "signup" or "signin"
   const [cartItems, setCartItems] = useState([]); // Example state for cart items
-  const [favoriteItems, setFavoriteItems] = useState(() => {
-    const stored = localStorage.getItem("favorites");
-    return stored ? JSON.parse(stored) : [];
-  }); // Example state for favorite items
+  const [favoriteItems, setFavoriteItems] = useState([]);
+
+  
   // Function to add a product to the cart
   const addToCart = (product) => {
     setCartItems((prev) => [...prev, product]);

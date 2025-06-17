@@ -12,6 +12,7 @@ const Categories = () => {
     const key = categoryMap[name];
     setSelectedCategory(key);
     setCurrentPage(0);
+    
   };
 
   const selectedData = productCategories.find(
