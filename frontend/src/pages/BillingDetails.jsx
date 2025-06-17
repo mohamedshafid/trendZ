@@ -24,7 +24,7 @@ const BillingSchema = z.object({
 });
 
 const BillingDetails = () => {
-  const { formRef,setUser } = useAppContext();
+  const { formRef, setUser } = useAppContext();
   const {
     register,
     handleSubmit,

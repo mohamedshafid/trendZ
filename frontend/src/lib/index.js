@@ -98,7 +98,6 @@ export const navLinks = [
     href: "#products",
   },
   {
-    
     name: "NewsLetter",
     href: "#newsletter",
   },

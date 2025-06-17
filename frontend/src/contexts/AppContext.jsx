@@ -9,6 +9,7 @@ export const AppProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [favoriteItems, setFavoriteItems] = useState([]);
   const formRef = useRef(null);
+  const [checkOutProduct, setCheckOutProduct] = useState([]);
 
   const isInCart = (productId) => {
     return cartItems.some((item) => item.productId === productId);
@@ -58,6 +59,8 @@ export const AppProvider = ({ children }) => {
         toggleFavoriteItem,
         user,
         setUser,
+        checkOutProduct,
+        setCheckOutProduct,
       }}
     >
       {children}

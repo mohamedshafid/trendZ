@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { useAuthStatus } from "./hooks/useAuthStatus";
 import { useCart } from "./hooks/useCart"; // 🆕 import useCart
 import BillingDetails from "./pages/BillingDetails";
+import CheckoutSuccess from "./pages/CheckoutSuccess";
 
 const App = () => {
   useAuthStatus();
@@ -26,7 +27,7 @@ const App = () => {
   const { data: cartData, isSuccess } = useCart({
     enabled: !!user,
   });
-  console.log(user?.address?.phone);
+
   useEffect(() => {
     if (isSuccess && cartData) {
       setCartItems(cartData.items);
@@ -62,7 +63,8 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/product/:productId/*" element={<ProductDetail />} />
-          <Route path="/billing-details" element={<BillingDetails />} />
+          <Route path="/billing-info" element={<BillingDetails />} />
+          <Route path="/success" element={<CheckoutSuccess/>}/>
         </Routes>
       </div>
 

@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/db.config.js";
 import { userRouter } from "./routes/user.route.js";
 import { cartRouter } from "./routes/cart.route.js";
+import { stripeRouter } from "./routes/stripe.route.js";
 import cookieParser from "cookie-parser";
 
 // loading environment variables from .env file.
@@ -33,6 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use("/api/v1/auth", userRouter);
 app.use("/api/v1/cart", cartRouter);
+app.use("/api/v1/stripe", stripeRouter);
 
 // default route.
 app.get("/", (req, res) => {

@@ -1,6 +1,6 @@
-import React from "react";
 import { useAppContext } from "../contexts/AppContext";
 import { useRemoveFromCart } from "../hooks/useCart";
+import { useStripeCheckout } from "../hooks/useStripeCheckout";
 import { Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { productCategories } from "../lib";
@@ -10,29 +10,31 @@ import { useNavigate } from "react-router-dom";
 const getProductDetailsById = (id) => {
   for (const category of productCategories) {
     const product = category.products.find((p) => p.id === id);
-    if (product) return product;
+    if (product) {
+      return product;
+    }
   }
   return null;
 };
 
 const Cart = () => {
-  const { cartItems } = useAppContext();
+  const { cartItems, user } = useAppContext();
   const removeMutation = useRemoveFromCart();
+  const { mutate: startCheckout } = useStripeCheckout();
+
   const navigate = useNavigate();
 
   // Filter valid cart items with product details
-  const enrichedItems = cartItems
+  const productItems = cartItems
     .map((cartItem) => {
       const product = getProductDetailsById(cartItem.productId);
-      return product
-        ? { ...product, ...cartItem } // Merge product and cart info
-        : null;
+      return product ? { ...product, ...cartItem } : null;
     })
-    .filter(Boolean); // Remove nulls (missing products)
+    .filter(Boolean);
 
   const getQty = (item) => item.quantity || 1;
 
-  const itemTotal = enrichedItems.reduce(
+  const itemTotal = productItems.reduce(
     (acc, item) => acc + item.price * getQty(item),
     0
   );
@@ -41,11 +43,44 @@ const Cart = () => {
   const grandTotal = itemTotal + deliveryCost + tax;
 
   const handleRemove = (productId) => {
-    removeMutation.mutate({productId}, {
-      onSuccess: () => toast.success("Item removed from cart"),
-      onError: () => toast.error("Failed to remove item"),
-    });
+    removeMutation.mutate(
+      { productId },
+      {
+        onSuccess: () => toast.success("Item removed from cart"),
+        onError: () => toast.error("Failed to remove item"),
+      }
+    );
   };
+
+  const handleCheckout = () => {
+    if (!user?.address) {
+      navigate("/billing-info");
+      return;
+    }
+
+    console.log("Starting checkout with items:", productItems);
+
+    startCheckout(
+      { cartItems: productItems },
+      {
+        onSuccess: (res) => {
+          console.log("Checkout response:", res);
+          if (res?.url) {
+            window.location.href = res.url;
+          } else {
+            toast.error("Failed to initiate checkout: URL missing");
+          }
+        },
+        onError: (error) => {
+          console.error("Checkout error:", error);
+          toast.error(
+            error?.response?.data?.message || "Failed to start checkout"
+          );
+        },
+      }
+    );
+  };
+  
 
   return (
     <div className="min-h-screen p-6 relative">
@@ -53,7 +88,7 @@ const Cart = () => {
         🛒 Your Cart
       </h1>
 
-      {enrichedItems.length === 0 ? (
+      {productItems.length === 0 ? (
         <div className="text-center mt-20">
           <Trash2 className="mx-auto w-16 h-16 text-primary animate-bounce mb-4" />
           <p className="text-lg text-gray-600">Your cart is empty.</p>
@@ -73,7 +108,7 @@ const Cart = () => {
                 </tr>
               </thead>
               <tbody>
-                {enrichedItems.map((item) => (
+                {productItems.map((item) => (
                   <tr
                     key={`${item.productId}-${item.size}`}
                     className="transition duration-300 hover:bg-white/10 border-t border-white/10"
@@ -137,7 +172,7 @@ const Cart = () => {
 
               <button
                 className="mt-6 w-full bg-primary text-white font-semibold py-3 rounded-xl shadow-md hover:bg-primary/80 transition duration-300"
-                onClick={() => navigate("/billing-details")}
+                onClick={handleCheckout}
               >
                 Proceed to Checkout
               </button>

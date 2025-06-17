@@ -3,7 +3,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Notebook, User, Mail, Lock } from "lucide-react";
 import { useAppContext } from "../contexts/AppContext";
-import { useSignUp } from "../hooks/useAuth";;
+import { useSignUp } from "../hooks/useAuth";
 import toast from "react-hot-toast"; // Optional toast support
 
 // 🔐 Zod Validation Schema
@@ -14,7 +14,7 @@ const SignUpSchema = z.object({
 });
 
 const Signup = () => {
-  const { toggleFormType, formRef ,setUser} = useAppContext();
+  const { toggleFormType, formRef, setUser } = useAppContext();
 
   const {
     register,
@@ -33,7 +33,7 @@ const Signup = () => {
       onSuccess: (userData) => {
         toast.success("Account created successfully!");
         reset();
-        toggleFormType(); 
+        toggleFormType();
       },
       onError: (err) => {
         toast.error(err.response?.data?.message || "Signup failed");
