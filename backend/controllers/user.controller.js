@@ -156,10 +156,60 @@ export const getCurrentUser = (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        address: user.address || null,
       },
     });
   } catch (error) {
     console.error("GetCurrentUser Error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
+
+// ADDRESS DETAILS CONTROLLER
+export const addressDetails = async (req, res) => {
+  const { phone, street, city, pincode, country } = req.body;
+
+  // Validate input
+  if (!phone || !street || !city || !pincode) {
+    return res.status(400).json({
+      success: false,
+      message: "Please fill all required fields",
+    });
+  }
+
+  try {
+    // Update user address
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      {
+        address: {
+          phone,
+          street,
+          city,
+          pincode,
+          country: country || "India",
+        },
+      },
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Address updated successfully",
+      address: user.address,
+    });
+  } catch (error) {
+    console.error("AddressDetails Error:", error);
     return res.status(500).json({
       success: false,
       message: "Internal server error",

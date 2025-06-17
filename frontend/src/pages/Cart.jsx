@@ -4,6 +4,7 @@ import { useRemoveFromCart } from "../hooks/useCart";
 import { Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { productCategories } from "../lib";
+import { useNavigate } from "react-router-dom";
 
 // 🔍 Helper to get full product details from productId
 const getProductDetailsById = (id) => {
@@ -17,6 +18,7 @@ const getProductDetailsById = (id) => {
 const Cart = () => {
   const { cartItems } = useAppContext();
   const removeMutation = useRemoveFromCart();
+  const navigate = useNavigate();
 
   // Filter valid cart items with product details
   const enrichedItems = cartItems
@@ -135,7 +137,7 @@ const Cart = () => {
 
               <button
                 className="mt-6 w-full bg-primary text-white font-semibold py-3 rounded-xl shadow-md hover:bg-primary/80 transition duration-300"
-                onClick={() => alert("Proceeding to checkout...")}
+                onClick={() => navigate("/billing-details")}
               >
                 Proceed to Checkout
               </button>

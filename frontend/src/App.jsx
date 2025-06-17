@@ -11,33 +11,27 @@ import ProductDetail from "./pages/ProductDetail";
 import { useEffect } from "react";
 import { useAuthStatus } from "./hooks/useAuthStatus";
 import { useCart } from "./hooks/useCart"; // 🆕 import useCart
+import BillingDetails from "./pages/BillingDetails";
 
 const App = () => {
-  useAuthStatus(); 
+  useAuthStatus();
   const {
     authModalOpen,
     formType,
     toggleAuthModal,
     formRef,
     user,
-    setCartItems, 
-    cartItems
+    setCartItems,
   } = useAppContext();
-
   const { data: cartData, isSuccess } = useCart({
     enabled: !!user,
   });
-
-  console.log("Cart Data:", cartItems);
-
-
+  console.log(user?.address?.phone);
   useEffect(() => {
     if (isSuccess && cartData) {
-      setCartItems(cartData.items); 
+      setCartItems(cartData.items);
     }
   }, [isSuccess, cartData, setCartItems]);
-
-
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -56,7 +50,6 @@ const App = () => {
     };
   }, [authModalOpen, toggleAuthModal]);
 
-
   return (
     <>
       {authModalOpen && formType === "signup" && <Signup />}
@@ -69,6 +62,7 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/product/:productId/*" element={<ProductDetail />} />
+          <Route path="/billing-details" element={<BillingDetails />} />
         </Routes>
       </div>
 
