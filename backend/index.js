@@ -1,36 +1,34 @@
-// package imports
+// package import.
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-import cookieParser from "cookie-parser";
 
-// local imports
+// local import.
 import { connectDB } from "./config/db.config.js";
 import { userRouter } from "./routes/user.route.js";
 import { cartRouter } from "./routes/cart.route.js";
 import { stripeRouter } from "./routes/stripe.route.js";
+import cookieParser from "cookie-parser";
 
-// load environment variables
+// loading environment variables from .env file.
 dotenv.config();
 
-// create express app
+// creating an express app.
 const app = express();
 
-// connect to the database
+// connecting to the database.
 connectDB();
 
-// allowed origins for CORS
+// allowing the server to accept requests from the frontend.
 const allowedOrigins = [
-  "http://localhost:5173", // local frontend (Vite)
-  "https://trendz-8m7k.onrender.com", // deployed frontend
+  "http://localhost:5173",
+  "https://trendz-8m7k.onrender.com",
 ];
 
-// CORS configuration
 app.use(
   cors({
     origin: function (origin, callback) {
-      // allow requests with no origin (like mobile apps or curl)
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
@@ -41,39 +39,21 @@ app.use(
   })
 );
 
-// handle preflight OPTIONS requests globally
-app.options(
-  "*",
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
-  })
-);
-
-// middleware
+// inbuild middleware.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-
-// route handlers
 app.use("/api/v1/auth", userRouter);
 app.use("/api/v1/cart", cartRouter);
 app.use("/api/v1/stripe", stripeRouter);
 
-// default route
+// default route.
 app.get("/", (req, res) => {
   console.log("Net Route!");
   res.send("Net Route!");
 });
 
-// start server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+// starting the server.
+app.listen(process.env.PORT || 3000, () => {
+  console.log("Server is running on port 3000");
 });
