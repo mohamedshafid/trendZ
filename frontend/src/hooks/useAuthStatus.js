@@ -10,11 +10,12 @@ export const useAuthStatus = () => {
     const checkAuth = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_BACKEND_BASE_URL}/api/v1/auth/me`,
+          `${import.meta.env.VITE_BACKEND_BASE_URL}/auth/me`,
           {
             withCredentials: true,
           }
         );
+        console.log("User data fetched:", res.data.user);
         setUser(res.data.user);
       } catch (err) {
         setUser(null);
