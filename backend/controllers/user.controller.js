@@ -117,8 +117,8 @@ export const signIn = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        token,
       },
-      token,
     });
   } catch (error) {
     console.error("SignIn Error:", error);
