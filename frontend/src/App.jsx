@@ -29,6 +29,7 @@ const App = () => {
   });
 
   useEffect(() => {
+     console.log("Cart data fetched:", cartData);
     if (isSuccess && cartData) {
       setCartItems(cartData.items);
     }

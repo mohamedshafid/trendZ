@@ -9,9 +9,12 @@ export const useAuthStatus = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/v1/auth/me", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          `${import.meta.env.VITE_BACKEND_BASE_URL}/api/v1/auth/me`,
+          {
+            withCredentials: true,
+          }
+        );
         setUser(res.data.user);
       } catch (err) {
         setUser(null);
