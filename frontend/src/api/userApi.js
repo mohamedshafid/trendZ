@@ -28,7 +28,7 @@ export const signUpUser = async (userData) => {
 
 // Sign out
 export const signOutUser = async () => {
-  const res = await axios.get(`${BASE_URL}/auth/sign-out`, {
+  const res = await axios.get(`${import.meta.VITE_BACKEND_BASE_URL}/auth/sign-out`, {
     withCredentials: true,
   });
   return res.data;
