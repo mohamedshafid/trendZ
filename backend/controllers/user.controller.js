@@ -12,8 +12,8 @@ const generateToken = (id) =>
 const setCookie = (res, token) => {
   res.cookie("token", token, {
     httpOnly: true,
-    secure: false,
-    sameSite: "Lax",
+    secure: true,
+    sameSite: "None",
     maxAge: 3600000,
   });
 };
