@@ -3,12 +3,8 @@ import { Link } from "react-router-dom";
 
 const CheckoutSuccess = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-tr from-primary via-indigo-800 to-black p-4 relative overflow-hidden">
-      {/* Background sparkles/glow */}
-      <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] bg-primary/20 rounded-full blur-[120px] animate-pulse z-0" />
-      <div className="absolute bottom-[-80px] right-[-80px] w-[200px] h-[200px] bg-white/10 rounded-full blur-[100px] animate-pulse z-0" />
-
-      <div className="relative z-10 backdrop-blur-2xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl p-8 md:p-12 max-w-xl w-full text-center transition-all duration-500 ease-in-out transform hover:scale-[1.015] hover:shadow-primary/40">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-tr from-primary to-black p-4 relative overflow-hidden">
+      <div className="relative z-10 animate-fade-in backdrop-blur-2xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl p-8 md:p-12 max-w-xl w-full text-center transition-all duration-500 ease-in-out transform hover:scale-[1.015] hover:shadow-primary/40">
         <div className="flex justify-center mb-6">
           <CheckCircle size={72} className="text-primary drop-shadow-md" />
         </div>

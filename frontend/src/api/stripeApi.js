@@ -3,7 +3,7 @@ import axios from "axios";
 export const createStripeSession = async ({cartItems}) => {
   console.log("Creating Stripe Session with Cart Items:", cartItems);
   const response = await axios.post(
-    "http://localhost:3000/api/v1/stripe/create-checkout-session",
+    `${import.meta.env.VITE_BACKEND_BASE_URL}/stripe/create-checkout-session`,
     {
       cartItems,
     }
