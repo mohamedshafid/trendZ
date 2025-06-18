@@ -23,7 +23,7 @@ connectDB();
 // allowing the server to accept requests from the frontend.
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://trendz-8m7k.onrender.com",
+  "https://lovely-nougat-c7f3fb.netlify.app",
 ];
 
 app.use(
