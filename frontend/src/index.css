@@ -20,7 +20,7 @@ body {
   --font-Rubik: "Rubik", sans-serif;
   --font-Roboto: "Roboto", sans-serif;
   --font-Outfit: "Outfit", sans-serif;
-  --background-image-hero: url("./src/assets/images/hero.jpg");
+  --background-image-hero: url("/hero.jpg");
 }
 
 @layer base {
