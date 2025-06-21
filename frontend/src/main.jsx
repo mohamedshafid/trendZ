@@ -5,6 +5,10 @@ import App from "./App.jsx";
 import { AppProvider } from "./contexts/AppContext.jsx";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { registerSW } from "virtual:pwa-register";
+
+registerSW();
+
 
 const queryClient = new QueryClient();
 
