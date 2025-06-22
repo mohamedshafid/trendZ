@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const updateAddressInfo = async (data) => {
   const response = await axios.post(
-    `${import.meta.env.VITE_BACKEND_BASE_URL}/auth/address-info`,
+    `https://trendz-backend.onrender.com/api/v1/auth/address-info`,
     data,
     {
       withCredentials: true,

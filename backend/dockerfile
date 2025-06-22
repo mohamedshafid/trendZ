@@ -1,8 +1,20 @@
-FROM node:18
+# Dockerfile for building the frontend application
+FROM node:18-alpine
 
+# ---- Production Stage ----
 WORKDIR /app
+
+# Copy package.json and package-lock.json first to leverage Docker cache
 COPY package*.json ./
-RUN npm install
+
+# Install dependencies
+RUN npm install --production
+
+# Copy the rest of the application code
 COPY . .
+
+# Build the application
 EXPOSE 3000
-CMD ["node", "server.js"]
+
+# Start the application
+CMD ["node", "index.js"]

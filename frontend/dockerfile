@@ -1,17 +1,21 @@
-# Use Node.js 20
+# Use Node base image
 FROM node:20-alpine
 
+# Set working directory
 WORKDIR /app
 
+# Copy package files and install dependencies
 COPY package*.json ./
 RUN npm install
 
+# Copy the rest of the application code
 COPY . .
 
+# Build the frontend (after code is present)
 RUN npm run build
 
-# Serve with nginx (optional)
-FROM nginx:alpine
-COPY --from=0 /app/dist /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Expose the port Vite uses (if serving locally, usually 5173 or 4173)
+EXPOSE 5173
+
+# Start the app (ensure npm start serves the built app)
+CMD ["npm", "start"]
