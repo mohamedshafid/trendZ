@@ -10,7 +10,7 @@ pipeline {
   stages {
     stage('Clone Repo') {
       steps {
-        git 'https://github.com/mohamedshafid/trendZ.git'
+        git 'https://github.com/mohamedshafid/trendz.git'
 
       }
     }
