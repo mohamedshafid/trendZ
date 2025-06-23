@@ -1,22 +1,28 @@
-version: '3.8'
+version: "3.8"
 
 services:
   backend:
     container_name: trendz-backend
-    build:
-      context: ./backend
+    image: mohamedhafid825/trendz-backend:latest
     ports:
       - "3000:3000"
     env_file:
       - ./backend/.env
-    restart: always
+    restart: unless-stopped
+    networks:
+      - trendz-network
 
   frontend:
     container_name: trendz-frontend
-    build:
-      context: ./frontend
+    image: mohamedhafid825/trendz-frontend:latest
     ports:
-      - "5173:5173"
-    restart: always
+      - "80:80"
+    restart: unless-stopped
     depends_on:
       - backend
+    networks:
+      - trendz-network
+
+networks:
+  trendz-network:
+    driver: bridge
