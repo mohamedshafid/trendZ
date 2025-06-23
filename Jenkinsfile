@@ -17,29 +17,29 @@ pipeline {
 
     stage('Build Backend Docker Image') {
       steps {
-        sh 'docker build -t $IMAGE_BACKEND ./backend'
+        bat 'docker build -t $IMAGE_BACKEND ./backend'
       }
     }
 
     stage('Build Frontend Docker Image') {
       steps {
-        sh 'docker build -t $IMAGE_FRONTEND ./frontend'
+        bat 'docker build -t $IMAGE_FRONTEND ./frontend'
       }
     }
 
     stage('Push Images to Docker Hub') {
       steps {
-        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-        sh 'docker push $IMAGE_BACKEND'
-        sh 'docker push $IMAGE_FRONTEND'
+        bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        bat 'docker push $IMAGE_BACKEND'
+        bat 'docker push $IMAGE_FRONTEND'
       }
     }
 
     stage('Deploy with Docker Compose') {
       steps {
-        sh 'docker-compose down'
-        sh 'docker-compose pull'
-        sh 'docker-compose up -d'
+        bat 'docker-compose down'
+        bat 'docker-compose pull'
+        bat 'docker-compose up -d'
       }
     }
   }
