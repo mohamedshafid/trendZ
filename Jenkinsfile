@@ -11,7 +11,6 @@ pipeline {
     stage('Clone Repo') {
       steps {
         git 'https://github.com/mohamedshafid/trendZ.git'
-'
       }
     }
 
