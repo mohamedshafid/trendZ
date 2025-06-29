@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const backend=import.meta.env.VITE_BACKEND_URL ;
+const backend="http://localhost:3000" ;
 
 export const updateAddressInfo = async (data) => {
   const response = await axios.post(

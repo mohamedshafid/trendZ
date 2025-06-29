@@ -2,7 +2,6 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import dotenv from "dotenv";
 
 // local import.
 import { connectDB } from "./config/db.config.js";
@@ -12,7 +11,6 @@ import { stripeRouter } from "./routes/stripe.route.js";
 import cookieParser from "cookie-parser";
 
 // loading environment variables from .env file.
-dotenv.config();
 
 // creating an express app.
 const app = express();
@@ -45,6 +43,6 @@ app.get("/", (req, res) => {
 });
 
 // starting the server.
-app.listen(process.env.PORT || 3000, () => {
+app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });

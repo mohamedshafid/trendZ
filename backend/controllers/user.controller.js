@@ -7,7 +7,7 @@ import { User } from "../models/user.model.js";
 
 // Utility: Generate JWT token
 const generateToken = (id) =>
-  jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+  jwt.sign({ id }, "mohamed@hafid", { expiresIn: "1h" });
 
 const setCookie = (res, token) => {
   res.cookie("token", token, {

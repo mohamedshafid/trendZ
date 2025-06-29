@@ -1,7 +1,8 @@
 // src/services/userApi.js
 import axios from "axios";
 
-const backend = import.meta.env.VITE_BACKEND_URL;
+const backend="http://localhost:3000" ;
+
 
 // Sign in
 export const signInUser = async (userData) => {

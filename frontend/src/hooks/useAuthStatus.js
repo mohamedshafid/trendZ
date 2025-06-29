@@ -5,8 +5,7 @@ import { useAppContext } from "../contexts/AppContext";
 
 export const useAuthStatus = () => {
   const { setUser } = useAppContext();
-  const backend = import.meta.env.VITE_BACKEND_URL;
-
+  const backend = "http://localhost:3000";
 
   useEffect(() => {
     const checkAuth = async () => {

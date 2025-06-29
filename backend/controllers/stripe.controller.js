@@ -1,7 +1,9 @@
 import Stripe from "stripe";
 
 export const stripeController = async (req, res) => {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+  const stripe = new Stripe(
+    "sk_test_51Rb1J5FJpHv400rwAgMbcl79I5EjypDPTk2zbJqtPuDNBMNqf3yyTW2JZfmhugJcgpRMzd0yjtVtNjThFTLp1oLA00ChdtiHqc"
+  );
   const { cartItems } = req.body;
   console.log("Stripe Controller Products:", cartItems);
 
@@ -29,8 +31,8 @@ export const stripeController = async (req, res) => {
       payment_method_types: ["card"],
       line_items,
       mode: "payment",
-      success_url: `${process.env.CLIENT_URL}/success`,
-      cancel_url: `${process.env.CLIENT_URL}/cart`,
+      success_url: `http://localhost:80/success`,
+      cancel_url: `http://localhost:80/cart`,
     });
 
     return res.status(200).json({ success: true, url: session.url });
