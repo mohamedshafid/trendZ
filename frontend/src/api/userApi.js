@@ -1,10 +1,12 @@
 // src/services/userApi.js
 import axios from "axios";
 
+const backend = import.meta.env.VITE_BACKEND_URL;
+
 // Sign in
 export const signInUser = async (userData) => {
   const res = await axios.post(
-    `https://trendz-backend.onrender.com/api/v1/auth/sign-in`,
+    `${backend}/api/v1/auth/sign-in`,
     userData,
     {
       withCredentials: true,
@@ -16,7 +18,7 @@ export const signInUser = async (userData) => {
 // Sign up
 export const signUpUser = async (userData) => {
   const res = await axios.post(
-    `https://trendz-backend.onrender.com/api/v1/auth/sign-up`,
+    `${backend}/api/v1/auth/sign-up`,
     userData,
     {
       withCredentials: true,
@@ -29,7 +31,7 @@ export const signUpUser = async (userData) => {
 // Sign out
 export const signOutUser = async () => {
   const res = await axios.get(
-    `https://trendz-backend.onrender.com/api/v1/auth/sign-out`,
+    `${backend}/api/v1/auth/sign-out`,
     {
       withCredentials: true,
     }
@@ -40,7 +42,7 @@ export const signOutUser = async () => {
 // Get profile (must be authenticated)
 export const getUserProfile = async () => {
   const res = await axios.get(
-    `https://trendz-backend.onrender.com/api/v1/auth/profile`,
+    `$${backend}/api/v1/auth/profile`,
     {
       withCredentials: true,
     }

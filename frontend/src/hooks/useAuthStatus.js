@@ -5,17 +5,17 @@ import { useAppContext } from "../contexts/AppContext";
 
 export const useAuthStatus = () => {
   const { setUser } = useAppContext();
+  const backend = import.meta.env.VITE_BACKEND_URL;
+
 
   useEffect(() => {
     const checkAuth = async () => {
+      console.log("Checking authentication status...");
       try {
-        const res = await axios.get(
-          `${import.meta.env.VITE_BACKEND_BASE_URL}/auth/me`,
-          {
-            withCredentials: true,
-          }
-        );
-        console.log("User data fetched:", res.data.user);
+        const res = await axios.get(`${backend}/auth/me`, {
+          withCredentials: true,
+        });
+        console.log("User data:", res.data.user);
         setUser(res.data.user);
       } catch (err) {
         setUser(null);

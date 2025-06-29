@@ -5,7 +5,7 @@ const AppContext = createContext(null);
 export const AppProvider = ({ children }) => {
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [formType, setFormType] = useState("signup");
-  const [cartItems, setCartItems] = useState([]); // will be set via useCart
+  const [cartItems, setCartItems] = useState([]); 
   const [user, setUser] = useState(null);
   const [favoriteItems, setFavoriteItems] = useState([]);
   const formRef = useRef(null);
@@ -15,7 +15,6 @@ export const AppProvider = ({ children }) => {
     return cartItems.some((item) => item.productId === productId);
   };
 
-  // 🛒 Favorites Functions
   const addToFavorites = (product) => {
     const updated = [...favoriteItems, product];
     setFavoriteItems(updated);

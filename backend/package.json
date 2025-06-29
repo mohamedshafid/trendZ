@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "Nothing",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "author": "Mohamed Hafid",
   "license": "ISC",

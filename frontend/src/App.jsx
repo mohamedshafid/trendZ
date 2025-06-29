@@ -10,7 +10,7 @@ import ProductDetail from "./pages/ProductDetail";
 
 import { useEffect } from "react";
 import { useAuthStatus } from "./hooks/useAuthStatus";
-import { useCart } from "./hooks/useCart"; // 🆕 import useCart
+import { useCart } from "./hooks/useCart"; 
 import BillingDetails from "./pages/BillingDetails";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
 
@@ -24,12 +24,12 @@ const App = () => {
     user,
     setCartItems,
   } = useAppContext();
+  console.log(user);
   const { data: cartData, isSuccess } = useCart({
     enabled: !!user,
   });
 
   useEffect(() => {
-     console.log("Cart data fetched:", cartData);
     if (isSuccess && cartData) {
       setCartItems(cartData.items);
     }

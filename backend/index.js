@@ -21,20 +21,11 @@ const app = express();
 connectDB();
 
 // allowing the server to accept requests from the frontend.
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://lovely-nougat-c7f3fb.netlify.app",
-];
+// const allowedOrigins = ["http://localhost:5173", "http://localhost:80"];
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: true,
     credentials: true,
   })
 );

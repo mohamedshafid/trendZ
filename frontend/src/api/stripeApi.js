@@ -1,9 +1,13 @@
 import axios from "axios";
 
+const backend=import.meta.env.VITE_BACKEND_URL ;
+
+
+
 export const createStripeSession = async ({cartItems}) => {
   console.log("Creating Stripe Session with Cart Items:", cartItems);
   const response = await axios.post(
-    `https://trendz-backend.onrender.com/api/v1/stripe/create-checkout-session`,
+    `${backend}/api/v1/stripe/create-checkout-session`,
     {
       cartItems,
     }

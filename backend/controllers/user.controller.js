@@ -77,6 +77,7 @@ export const signUp = async (req, res) => {
 
 // SIGN IN CONTROLLER
 export const signIn = async (req, res) => {
+  console.log("SignIn Request Body:", req.body);
   const { email, password } = req.body;
 
   // Validate input
@@ -150,6 +151,7 @@ export const signOut = (req, res) => {
 export const getCurrentUser = (req, res) => {
   try {
     const user = req.user;
+    console.log("Current User:", user);
     return res.status(200).json({
       success: true,
       user: {
