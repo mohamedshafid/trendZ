@@ -24,6 +24,20 @@ Trendz is a full-stack dress-selling application that offers a seamless and mode
 - **Authentication**: JWT
 - **CI/CD & Deployment**: Docker (frontend & backend Dockerfiles), Jenkins, Docker Hub
 
+- ## 🖼️ Screenshots
+
+<p align="center">
+  <img src="https://github.com/mohamedshafid/trendZ/blob/main/readme_images/Screenshot%20from%202025-06-30%2000-02-22.png" width="35%" />
+  <img src="https://github.com/mohamedshafid/trendZ/blob/main/readme_images/Screenshot%20from%202025-06-30%2000-02-31.png" width="25%" />
+  <img src="https://github.com/mohamedshafid/trendZ/blob/main/readme_images/Screenshot%20from%202025-06-30%2000-02-22.png" width="30%" />
+</p>
+<p align="center">
+  <img src="https://github.com/mohamedshafid/trendZ/blob/main/readme_images/Screenshot%20from%202025-06-30%2000-02-40.png" width="40%" />
+  <img src="https://github.com/mohamedshafid/trendZ/blob/main/readme_images/Screenshot%20from%202025-06-30%2000-03-22.png" width="28%" />
+  <img src="https://github.com/mohamedshafid/trendZ/blob/main/readme_images/Screenshot%20from%202025-06-29%2023-29-45.png" width="25%" />
+</p>
+
+
 
 
 ## 🚀 Steps to Run the Application
