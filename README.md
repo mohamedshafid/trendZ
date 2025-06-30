@@ -1,3 +1,5 @@
+![banner](https://github.com/mohamedshafid/trendZ/blob/main/readme_images/trendzA_Clothing_web_App.png)
+
 # 🛍️ Trendz
 
 Trendz is a full-stack dress-selling application that offers a seamless and modern online shopping experience for fashionable clothing. With Trendz, users can explore the latest dress collections, add items to their cart, and securely complete purchases — all in one place.
